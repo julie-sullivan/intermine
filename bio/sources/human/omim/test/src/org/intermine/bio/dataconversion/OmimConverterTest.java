@@ -65,6 +65,7 @@ public class OmimConverterTest extends ItemsTestCase
         storedItems = itemWriter.getItems();
         //writeItemsFile(storedItems, "omim-tgt-items.xml");
 
+
         Set<org.intermine.xml.full.Item> expected = readItemSet("OmimConverterTest_tgt.xml");
         assertEquals(expected, storedItems);
     }

@@ -60,7 +60,6 @@ public final class IdResolverService
     public static IdResolver getIdResolverByOrganism(Set<String> taxonIds) {
         // HACK - for worm in ncbi
         IdResolverService.getWormIdResolver();
-        // HACK - resolve human ids to HGNC symbols
         IdResolverService.getHumanIdResolver();
 
         Set<String> validTaxonIds = new HashSet<String>(taxonIds);
@@ -209,7 +208,7 @@ public final class IdResolverService
      * @return an IdResolver
      */
     public static IdResolver getHumanIdResolver() {
-        return new HumanIdResolverFactory().getIdResolver(false);
+        return new EnsemblIdResolverFactory().getIdResolver(false);
     }
 
     /**
@@ -218,7 +217,8 @@ public final class IdResolverService
      * @return an IdResolver
      */
     public static IdResolver getHumanIdResolver(boolean failOnError) {
-        return new HumanIdResolverFactory().getIdResolver(failOnError);
+        //return new HumanIdResolverFactory().getIdResolver(failOnError);
+        return new EnsemblIdResolverFactory().getIdResolver(failOnError);
     }
 
     /**

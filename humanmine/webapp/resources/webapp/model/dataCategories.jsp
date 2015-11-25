@@ -137,5 +137,4 @@
 </table>
 
 </div>
-</div>
 <!-- /dataCategories -->
