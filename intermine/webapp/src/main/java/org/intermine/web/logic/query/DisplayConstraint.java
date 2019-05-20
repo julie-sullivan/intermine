@@ -153,6 +153,8 @@ public class DisplayConstraint
     private String constraintStringValue(PathConstraint con) {
         if (con instanceof PathConstraintAttribute) {
             return ((PathConstraintAttribute) con).getValue();
+        } else if (con instanceof PathConstraintMultiValue) {
+            return getMultiValuesAsString();
         } else if (con instanceof PathConstraintRange) {
             return getMultiValuesAsString();
         } else if (con instanceof PathConstraintBag) {
