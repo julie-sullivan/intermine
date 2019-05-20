@@ -241,15 +241,10 @@ public class DisplayConstraint
      * @return a String representing the multivalues of constraint
      */
     public String getMultiValuesAsString() {
-        String multiValuesAsString = "";
-        if (getMultiValues() != null) {
-            for (String value : getMultiValues()) {
-                multiValuesAsString += value.trim() + ",";
-            }
-            multiValuesAsString = multiValuesAsString.substring(0,
-                                  multiValuesAsString.lastIndexOf(","));
+        if (getMultiValues() == null) {
+            return "";
         }
-        return multiValuesAsString;
+        return StringUtil.prettyList(getMultiValues());
     }
 
     /**
