@@ -244,7 +244,7 @@ public class DisplayConstraint
         String multiValuesAsString = "";
         if (getMultiValues() != null) {
             for (String value : getMultiValues()) {
-                multiValuesAsString += value + ",";
+                multiValuesAsString += value.trim() + ",";
             }
             multiValuesAsString = multiValuesAsString.substring(0,
                                   multiValuesAsString.lastIndexOf(","));
@@ -552,7 +552,8 @@ public class DisplayConstraint
                 List<Object> fieldValueFormatted = new ArrayList<Object>();
                 if (fieldValues != null) {
                     for (Object obj : fieldValues) {
-                        fieldValueFormatted.add(ConstraintValueParser.format((String) obj));
+                        String fieldValue = ConstraintValueParser.format((String) obj);
+                        fieldValueFormatted.add(fieldValue);
                     }
                 }
                 return fieldValueFormatted;
