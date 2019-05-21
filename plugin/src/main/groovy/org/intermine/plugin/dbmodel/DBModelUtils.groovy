@@ -72,6 +72,24 @@ class DBModelUtils {
         ant.torque(osname: objectStoreName, destFile: destination)
     }
 
+    protected createTestSchema = { objectStoreName ->
+        String schemaFile = objectStoreName + "-schema.xml"
+        String destination = project.getBuildDir().getAbsolutePath() + File.separator + schemaFile
+        System.out.println("Creating schema in objectstore ${objectStoreName} for ${destination}")
+
+        def ant = new AntBuilder()
+        ant.taskdef(name: "torque", classname: "org.intermine.objectstore.intermine.TorqueModelOutputTask") {
+            classpath {
+                dirset(dir: project.getBuildDir().getAbsolutePath())
+                pathelement(path: project.configurations.getByName("compile").asPath)
+                // remove bio-model from the compile config. asList
+                pathelement(path: project.configurations.getByName("bioTestModel").asPath)
+                pathelement(path: project.configurations.getByName("api").asPath) //userprofile classes
+            }
+        }
+        ant.torque(osname: objectStoreName, destFile: destination)
+    }
+
     protected createTables = { objectStoreName, modelName ->
         String schemaFile = objectStoreName + "-schema.xml"
         String tempDirectory = project.getBuildDir().getAbsolutePath() + File.separator + "tmp"

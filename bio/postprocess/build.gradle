@@ -28,8 +28,12 @@ subprojects {
     apply plugin: 'com.jfrog.bintray'
     apply plugin: 'com.jfrog.artifactory'
     apply plugin: 'dbmodel'
-    apply plugin: 'biocore-dbmodel'
     apply plugin: "checkstyle"
+    if (getGradle().getStartParameter().getTaskRequests().toString().contains("test")){
+        apply plugin: 'biotest-dbmodel'
+    } else {
+        apply plugin: 'biocore-dbmodel'
+    }
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -44,6 +48,7 @@ subprojects {
 
     configurations {
         mergeModel
+        bioTestModel
     }
     
     dependencies {
@@ -64,7 +69,7 @@ subprojects {
 
     task copyMineProperties() {
         dependsOn 'processResources'
-    	doLast {
+        doLast {
             copy {
                 from "${System.env.HOME}/.intermine/intermine-bio-test.properties"
                 into sourceSets.main.output.resourcesDir

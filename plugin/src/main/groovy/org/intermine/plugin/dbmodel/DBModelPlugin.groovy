@@ -281,7 +281,7 @@ class DBModelPlugin implements Plugin<Project> {
             dependsOn 'initConfig', 'copyMineProperties', 'copyDefaultInterMineProperties', 'copyGenomicModel', 'jar', 'copyGenomicKeys'
 
             doLast {
-                dbUtils.createSchema(config.objectStoreName)
+                dbUtils.createTestSchema(config.objectStoreName)
                 dbUtils.createTables(config.objectStoreName, config.modelName)
                 dbUtils.storeMetadata(config.objectStoreName, config.modelName)
             }
