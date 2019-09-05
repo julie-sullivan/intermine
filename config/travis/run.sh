@@ -17,11 +17,7 @@ if [ "$TEST_SUITE" = "intermine" ]; then
     echo ALL TESTS PASSED
 elif [ "$TEST_SUITE" = "bio" ]; then
     echo "RUNNING bio unit tests"
-    (cd plugin && ./gradlew install --no-daemon)
-    (cd intermine && ./gradlew install --no-daemon)    
-    (cd bio && ./gradlew install --no-daemon)
-    (cd bio/sources && ./gradlew install --no-daemon)
-    (cd bio/postprocess && ./gradlew install --no-daemon)
+    (cd plugin && ./gradlew install) && (cd intermine && ./gradlew install) && (cd bio && ./gradlew install) && (cd bio/sources && ./gradlew install) && (cd bio/postprocess && ./gradlew install)
 
     (cd bio && ./gradlew build --no-daemon)
     (cd bio/sources && ./gradlew build --no-daemon)
