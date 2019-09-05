@@ -26,7 +26,7 @@ else
 
     echo '#---> Installing python requirements'
     # Install lib requirements
-    pip install -r config/lib/requirements.txt
+    pip3 install -r config/lib/requirements.txt
 
     if [[ "$TEST_SUITE" = "ws" ]]; then
 
