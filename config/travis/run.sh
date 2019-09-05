@@ -8,8 +8,8 @@ export ANT_OPTS='-server'
 
 if [ "$TEST_SUITE" = "intermine" ]; then
     echo "RUNNING intermine unit tests"
-    (cd plugin && ./gradlew install)
-    (cd intermine && ./gradlew build)
+    (cd plugin && ./gradlew install --no-daemon)
+    (cd intermine && ./gradlew build --no-daemon)
 
     echo CHECKING results
     ./config/lib/parse_test_report.py 'intermine'
@@ -17,16 +17,16 @@ if [ "$TEST_SUITE" = "intermine" ]; then
     echo ALL TESTS PASSED
 elif [ "$TEST_SUITE" = "bio" ]; then
     echo "RUNNING bio unit tests"
-    (cd plugin && ./gradlew install)
-    (cd intermine && ./gradlew install)    
-    (cd bio && ./gradlew install)
-    (cd bio/sources && ./gradlew install)
-    (cd bio/postprocess && ./gradlew install)
+    (cd plugin && ./gradlew install --no-daemon)
+    (cd intermine && ./gradlew install --no-daemon)    
+    (cd bio && ./gradlew install --no-daemon)
+    (cd bio/sources && ./gradlew install --no-daemon)
+    (cd bio/postprocess && ./gradlew install --no-daemon)
 
-    (cd bio && ./gradlew build)
-    (cd bio/sources && ./gradlew build)
-    (cd bio/postprocess && ./gradlew build)
-    (cd bio/postprocess-test && ./gradlew build)
+    (cd bio && ./gradlew build --no-daemon)
+    (cd bio/sources && ./gradlew build --no-daemon)
+    (cd bio/postprocess && ./gradlew build --no-daemon)
+    (cd bio/postprocess-test && ./gradlew build --no-daemon)
 
     echo CHECKING results
     ./config/lib/parse_test_report.py 'bio'
