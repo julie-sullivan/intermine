@@ -14,10 +14,6 @@ env:
   - TEST_SUITE=ws CLIENT=JS
   - TEST_SUITE=ws CLIENT=PY  
 sudo: true
-jdk:
-- openjdk8
-dist: 
-- trusty
 before_script:
 - "./config/travis/init-solr.sh"
 - "./config/travis/init.sh"
